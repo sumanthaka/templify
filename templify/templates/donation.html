@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 style="text-align: center;margin-bottom: 1.4em">Donation Receipt</h2>
+    <form style="border-color: var(--bs-danger);margin: 0.6em;" onsubmit="submitDonation()">
+        <input id="name" class="form-control" type="text" name="Name" placeholder="Name" style="margin-bottom: 2em;" required/>
+        <select id="donation_type" class="form-select" style="margin-bottom: 2em;" required>
+            <option value="donation">Donation</option>
+            <option value="annadanam">Annadanam</option>
+        </select>
+        <input id="amount" class="form-control" type="number" name="Amount" placeholder="Amount" style="margin-bottom: 2em;" required/>
+        <input id="donation_date" class="form-control" type="date" name="Date" placeholder="Date" style="margin-bottom: 2em;" required />
+        <div style="display: flex;justify-content: center">
+            <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
+    <script src="{{ url_for('main.catch_all', path='js/donation.js') }}"></script>
+{% endblock %}

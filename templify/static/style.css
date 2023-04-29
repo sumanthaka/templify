@@ -1,0 +1,53 @@
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.pendulum-holder {
+  width: 5em;
+  height: 12em;
+  position: relative;
+  margin: auto;
+}
+
+.pendulum, .pendulum-reverse {
+    position: absolute;
+    transform-origin: 50% 0;
+    width: 5em;
+    height: 30em;
+    background: none;
+}
+
+.pendulum {
+    left: 50%;
+    transform: translate(-50%) rotate(15deg);
+    animation: animateIt 3s ease-in-out infinite;
+}
+
+.pendulum-reverse {
+    right: 50%;
+    transform: translate(50%) rotate(-15deg);
+    animation: animateIt-reverse 3s ease-in-out infinite;
+}
+
+@keyframes animateIt {
+  0%, 100% {
+    transform: translate(-50%) rotate(6deg);
+  }
+  50% {
+    transform: translate(-50%) rotate(-6deg);
+  }
+}
+
+@keyframes animateIt-reverse {
+  0%, 100% {
+    transform: translate(50%) rotate(-6deg);
+  }
+  50% {
+    transform: translate(50%) rotate(6deg);
+  }
+}
+
+
+

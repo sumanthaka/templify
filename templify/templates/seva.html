@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2 style="text-align: center;margin-bottom: 1.4em">Seva Receipt</h2>
+    <form style="border-color: var(--bs-danger);margin: 0.6em;" onsubmit="submitSeva()">
+        <div>
+            <input id="name" class="form-control" type="text" name="Name" placeholder="Name" style="margin-bottom: 2em;" required/>
+            <select id="star" class="form-select" style="margin-bottom: 2em;" required>
+                <option value="Aswathi">Aswathi</option>
+                <option value="Bharani">Bharani</option>
+                <option value="Kaarthika">Kaarthika</option>
+                <option value="Rohini">Rohini</option>
+                <option value="Makeeryam">Makeeryam</option>
+                <option value="Thiruvaathira">Thiruvaathira</option>
+                <option value="Punartham">Punartham</option>
+                <option value="Aayilyam">Aayilyam</option>
+                <option value="Makam">Makam</option>
+                <option value="Pooram">Pooram</option>
+                <option value="Uthram">Uthram</option>
+                <option value="Atham">Atham</option>
+                <option value="Chitra">Chitra</option>
+                <option value="Chothi">Chothi</option>
+                <option value="Visakham">Visakham</option>
+                <option value="Anizham">Anizham</option>
+                <option value="Thrikketta">Thrikketta</option>
+                <option value="Moolam">Moolam</option>
+                <option value="Pooradam">Pooradam</option>
+                <option value="Uthradam">Uthradam</option>
+                <option value="Thiruvonam">Thiruvonam</option>
+                <option value="Avittam">Avittam</option>
+                <option value="Chathayam">Chathayam</option>
+                <option value="Poorattadhi">Poorattadhi</option>
+                <option value="Uthrattadhi">Uthrattadhi</option>
+                <option value="Revathi">Revathi</option>
+            </select>
+            <input id="seva_date" class="form-control" type="date" style="margin-bottom: 2em">
+        </div>
+        <div class="card-group" style="margin-top: 2em;margin-bottom: 2em;">
+            <div class="card" style="background: transparent;border-radius: 0.3em;border-width: 0.3em;border-color: orange;">
+                <div class="card-body">
+                    <h4 class="card-title">
+                        <select id="pooja" class="form-select">
+                            {% set price=[] %}
+                            {% set pooja_list=[] %}
+                            {% for pooja in poojas %}
+                                <option value="{{ pooja['_id'] }}">{{ pooja['Pooja'] }}</option>
+                                {% set price=price.append(pooja['Price']) %}
+                                {% set pooja_list=pooja_list.append(pooja['Pooja']) %}
+                            {% endfor %}
+                        </select>
+                    </h4>
+                    <div class="flex align-content-center justify-content-md-center">
+                        <select id="gods" class="form-select" style="margin-bottom: 2em;margin-top: 2em;"></select>
+                        <button id="add" class="btn btn-primary" type="button">Add</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="table-responsive" style="margin-bottom: 2em">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Pooja</th>
+                        <th>Price</th>
+                        <th>God</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody id="added_poojas">
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <th>Total</th>
+                        <th id="total">0</th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="d-md-flex justify-content-md-center align-items-md-center">
+            <button class="btn btn-primary" type="submit">Save</button>
+        </div>
+    </form>
+    <script src="{{ url_for('static', filename='js/seva.js') }}"
+            prices_list="{{ price|tojson }}"
+            delete_icon={{ url_for('main.catch_all', path='images/remove.png')|tojson }}></script>
+{% endblock %}
