@@ -29,14 +29,14 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% set count = 1 %}
+                        {% set count = namespace(value=1) %}
                         {% for pooja in info['god_wise_poojas'][god] %}
                             <tr>
-                                <td class="quantity">{{ count }}</td>
+                                <td class="quantity">{{ count.value }}</td>
                                 <td class="description">{{ pooja['pooja'] }}</td>
                                 <td class="price">{{ pooja['price'] }}</td>
                             </tr>
-                            {% set count = count + 1 %}
+                            {% set count.value = count.value + 1 %}
                         {% endfor %}
                     </tbody>
                 </table>
