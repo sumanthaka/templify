@@ -24,12 +24,29 @@ class Seva:
                 if 'gods' in god.keys():
                     info['poojas'][i]['god'] = god['gods'][0]
         db['seva'].insert_one(info)
+        return db['seva'].find_one(info)['_id']
+
+    @staticmethod
+    def get_seva(id):
+        seva_query = db['seva'].find_one({'_id': ObjectId(id)})
+        return seva_query
+
+    @staticmethod
+    def get_price(pooja_id):
+        pooja_query = db['pooja'].find_one({'_id': ObjectId(pooja_id)}, {'_id': 0, 'Price': 1})
+        return pooja_query['Price']
 
 
 class Donation:
     @staticmethod
     def save_donation(info):
         db['donation'].insert_one(info)
+        return db['donation'].find_one(info)['_id']
+
+    @staticmethod
+    def get_donation(id):
+        donation_query = db['donation'].find_one({'_id': ObjectId(id)})
+        return donation_query
 
 
 class Transaction:

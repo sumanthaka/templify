@@ -17,6 +17,7 @@ async function getTransactions() {
                         <th>Poojas</th>
                         <th>Gods</th>
                         <th>Transaction Amount</th>
+                        <th>Print</th>
                     </tr>`
         await fetch(url, {
             method: 'POST',
@@ -43,6 +44,8 @@ async function getTransactions() {
                 }
                 td6 = document.createElement('td')
                 td6.textContent = transaction.total
+                td7 = document.createElement('td')
+                td7.innerHTML = `<a href="/bill/${transaction._id}" target="_blank"><i class="fas fa-print">Print</i></a>`
                 tr = document.createElement('tr')
                 tr.appendChild(td1)
                 tr.appendChild(td2)
@@ -50,6 +53,7 @@ async function getTransactions() {
                 tr.appendChild(td4)
                 tr.appendChild(td5)
                 tr.appendChild(td6)
+                tr.appendChild(td7)
                 transactions.appendChild(tr)
             })
         })
@@ -64,6 +68,7 @@ async function getTransactions() {
                         <th>Name</th>
                         <th>Amount</th>
                         <th>Type</th>
+                        <th>Print</th>
                     </tr>`
         await fetch(url, {
             method: 'POST',
@@ -84,12 +89,15 @@ async function getTransactions() {
                 td4.textContent = transaction.amount
                 td5 = document.createElement('td')
                 td5.textContent = transaction.donation_type
+                td6 = document.createElement('td')
+                td6.innerHTML = `<a href="/dono_bill/${transaction._id}" target="_blank"><i class="fas fa-print">Print</i></a>`
                 tr = document.createElement('tr')
                 tr.appendChild(td1)
                 tr.appendChild(td2)
                 tr.appendChild(td3)
                 tr.appendChild(td4)
                 tr.appendChild(td5)
+                tr.appendChild(td6)
                 transactions.appendChild(tr)
             })
         })

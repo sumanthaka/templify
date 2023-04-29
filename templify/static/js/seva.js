@@ -95,8 +95,10 @@ function updateTotal() {
     document.getElementById("total").textContent = total.toString()
 }
 
+
 async function submitSeva() {
     let name = document.getElementById("name").value
+    let star = document.getElementById("star").value
     let seva_date = document.getElementById("seva_date").value
     let total = document.getElementById("total").textContent
     let rows = added_poojas.getElementsByTagName("tr")
@@ -108,7 +110,7 @@ async function submitSeva() {
         let god = row.getElementsByTagName("td")[2].textContent
         poojas.push({pooja_id: pooja_id,  pooja: pooja, god: god})
     }
-    let data = {name: name, seva_date: seva_date, total: total, poojas: poojas}
+    let data = {name: name, star: star, seva_date: seva_date, total: total, poojas: poojas}
     await fetch('/seva', {
         method: 'POST',
         headers: {
@@ -116,5 +118,8 @@ async function submitSeva() {
         },
         body: JSON.stringify(data)
         })
-        .then(response => response.json())
+        .then(response => response.text())
+        .then(data => {
+            location.href = data
+        })
 }

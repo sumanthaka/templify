@@ -2,7 +2,7 @@
 
 {% block content %}
     <h2 style="text-align: center;margin-bottom: 1.4em">Seva Receipt</h2>
-    <form style="border-color: var(--bs-danger);margin: 0.6em;" onsubmit="submitSeva()">
+    <form style="border-color: var(--bs-danger);margin: 0.6em;" >
         <div>
             <input id="name" class="form-control" type="text" name="Name" placeholder="Name" style="margin-bottom: 2em;" required/>
             <select id="star" class="form-select" style="margin-bottom: 2em;" required>
@@ -81,7 +81,7 @@
             </table>
         </div>
         <div class="d-md-flex justify-content-md-center align-items-md-center">
-            <button class="btn btn-primary" type="submit">Save</button>
+            <a onclick="submitSeva()" class="btn btn-primary">Save</a>
         </div>
     </form>
     <script src="{{ url_for('static', filename='js/seva.js') }}"

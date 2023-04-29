@@ -20,4 +20,8 @@ async function submitDonation() {
         },
         body: JSON.stringify(data)
     })
+    .then(response => response.text())
+        .then(data => {
+            location.href = data
+        })
 }
