@@ -15,6 +15,7 @@ td.description,
 th.description {
     width: 75px;
     max-width: 75px;
+    word-wrap: anywhere;
 }
 
 td.quantity,
