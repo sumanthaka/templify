@@ -25,7 +25,6 @@ async function getTransactions() {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
             transactions.innerHTML = ''
             data.forEach(transaction => {
                 td1 = document.createElement('td')
@@ -102,4 +101,68 @@ async function getTransactions() {
             })
         })
     }
+    else if(type.value === 'daily') {
+        let day_select = document.getElementById('day_select')
+        let select = document.createElement('select')
+        select.setAttribute('id', 'day_dropdown')
+        select.setAttribute('class', 'form-control')
+        await fetch(url, {
+            method: 'POST',
+            body: 'daily_date'
+        })
+        .then(response => response.json())
+        .then(data => {
+            select.innerHTML = ''
+            data.forEach(date => {
+                option = document.createElement('option')
+                option.textContent = date
+                select.appendChild(option)
+                day_select.appendChild(select)
+            })
+        })
+        select.addEventListener('change', getDailyTransactions)
+        let thead = document.getElementById('t_head')
+        thead.innerHTML = ''
+        thead.innerHTML = `
+                    <tr>
+                        <th>Type</th>
+                        <th>Amount</th>
+                    </tr>`
+        getDailyTransactions()
+    }
+}
+
+async function getDailyTransactions() {
+    let day = document.getElementById('day_dropdown').value
+    let url = '/transactions'
+    await fetch(url, {
+        method: 'POST',
+        body: day
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data)
+        transactions.innerHTML = ''
+        for(let i=0; i<data.seva.length; i++) {
+            td1 = document.createElement('td')
+            td1.textContent = data.seva[i]
+            td2 = document.createElement('td')
+            td2.textContent = data.price[i]
+            tr = document.createElement('tr')
+            tr.appendChild(td1)
+            tr.appendChild(td2)
+            transactions.appendChild(tr)
+        }
+
+        for(let i=0; i<Object.keys(data.donations).length; i++) {
+            td1 = document.createElement('td')
+            td1.textContent = Object.keys(data.donations)[i]
+            td2 = document.createElement('td')
+            td2.textContent = Object.values(data.donations)[i]
+            tr = document.createElement('tr')
+            tr.appendChild(td1)
+            tr.appendChild(td2)
+            transactions.appendChild(tr)
+        }
+    })
 }

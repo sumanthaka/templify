@@ -3,9 +3,11 @@
 {% block content %}
     <h2 style="text-align: center;margin-bottom: 1.4em">Transactions</h2>
     <select id="type" class="form-select" style="margin-bottom: 2em;">
-        <option value="seva">Seva</option>
-        <option value="donation">Donation</option>
+        <option value="seva">All Seva</option>
+        <option value="donation">All Donation</option>
+        <option value="daily">Day report</option>
     </select>
+    <div id="day_select"></div>
     <div class="table-responsive" style="margin-bottom: 2em">
         <table class="table">
             <thead id="t_head">

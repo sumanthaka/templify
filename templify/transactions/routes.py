@@ -13,6 +13,11 @@ def transactions_page():
             transaction_list = Transaction.get_sevas()
         elif data == 'donation':
             transaction_list = Transaction.get_donations()
-        print(transaction_list)
+        elif data == 'daily_date':
+            dates = Transaction.get_daily_dates()
+            return jsonify(dates)
+        else:
+            transaction_list = Transaction.get_transactions(data)
+
         return jsonify(transaction_list)
     return render_template('transactions.html')
