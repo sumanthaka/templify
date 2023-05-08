@@ -54,8 +54,8 @@ class Donation:
         return db['donation'].find_one(info)['_id']
 
     @staticmethod
-    def get_donation(id):
-        donation_query = db['donation'].find_one({'_id': ObjectId(id)})
+    def get_donation(_id):
+        donation_query = db['donation'].find_one({'_id': ObjectId(_id)})
         return donation_query
 
 
@@ -117,3 +117,16 @@ class Transaction:
         return data
 
 
+class Kettunira:
+    @staticmethod
+    def save_kettunira(info):
+        t_amt = int(info['n_of_persons']) * 400
+        info.update({'total': t_amt})
+        info['kettunira_date'] = datetime.datetime.strptime(info['kettunira_date'], '%Y-%m-%d')
+        db['kettunira'].insert_one(info)
+        return db['kettunira'].find_one(info)['_id']
+
+    @staticmethod
+    def get_kettunira(_id):
+        kettunira_query = db['kettunira'].find_one({'_id': ObjectId(_id)})
+        return kettunira_query

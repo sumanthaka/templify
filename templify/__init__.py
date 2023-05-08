@@ -12,8 +12,10 @@ from templify.main.routes import main
 from templify.seva.routes import seva
 from templify.donation.routes import donation
 from templify.transactions.routes import transactions
+from templify.kettunira.routes import kettunira
 
 app.register_blueprint(main)
 app.register_blueprint(seva)
 app.register_blueprint(donation)
 app.register_blueprint(transactions)
+app.register_blueprint(kettunira)

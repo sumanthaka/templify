@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link href="{{ url_for('main.catch_all', path='bill.css') }}" rel="stylesheet">
+        <title>Receipt</title>
+    </head>
+    <body>
+    <div class="ticket">
+            <p class="centered">SRI AYYAPPA SWAMY TEMPLE
+                <br>Hebbal Kempapura, Bengaluru
+                <br>Name: {{ info['name'] }}
+                <br>Date: {{ info['kettunira_date'] }}
+                <br>Transaction Id:
+                <br>{{ info['_id'] }}</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th class="quantity">Sl.no.</th>
+                        <th class="description">Type</th>
+                        <th class="quantity">No.Per.</th>
+                        <th class="price">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% set count = 1 %}
+                    <tr>
+                        <td class="quantity">{{ count }}</td>
+                        <td class="description">Kettunira</td>
+                        <td class="quantity">{{ info['n_of_persons'] }}</td>
+                        <td class="price">{{ info['total'] }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p class="centered">Thanks for visiting!
+                <br>Templify</p>
+        </div>
+        <hr style="color: black;border: solid black;text-align: left;width: 155px;margin-left: 0">
+        <button id="btnPrint" class="hidden-print">Print</button>
+        <script src="{{ url_for('main.catch_all', path='js/bill.js') }}"></script>
+    </body>
+</html>
