@@ -4,6 +4,12 @@ let type = document.getElementById('type')
 type.addEventListener('change', getTransactions)
 getTransactions()
 
+const $btnPrint = document.querySelector("#btnPrint");
+$btnPrint.addEventListener("click", () => {
+    window.print();
+    window.location.href = "/seva"
+})
+
 async function getTransactions() {
     let url = '/transactions'
     if(type.value === 'seva') {

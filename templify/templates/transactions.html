@@ -1,13 +1,17 @@
 {% extends 'base.html' %}
 
+{% block links %}
+    <link rel="stylesheet" href="{{ url_for('main.catch_all', path='transaction.css') }}">
+{% endblock %}
+
 {% block content %}
-    <h2 style="text-align: center;margin-bottom: 1.4em">Transactions</h2>
-    <select id="type" class="form-select" style="margin-bottom: 2em;">
+    <h2 style="text-align: center;margin-bottom: 1.4em" class="hidden-print">Transactions</h2>
+    <select id="type" class="form-select hidden-print" style="margin-bottom: 2em;">
         <option value="seva">All Seva</option>
         <option value="donation">All Donation</option>
         <option value="daily">Day report</option>
     </select>
-    <div id="day_select"></div>
+    <div id="day_select" class="hidden-print"></div>
     <div class="table-responsive" style="margin-bottom: 2em">
         <table class="table">
             <thead id="t_head">
@@ -16,5 +20,6 @@
             </tbody>
         </table>
     </div>
+    <button id="btnPrint" class="hidden-print">Print</button>
     <script src="{{ url_for('main.catch_all', path='js/transaction.js') }}"></script>
 {% endblock %}
